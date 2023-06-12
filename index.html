@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="heading">Promise Async Await Handson</div>
+    <br />
+    <hr />
+    <p>
+      Question1=>Write one example explaining how you can write a callback
+      function.
+    </p>
+    <br />
+    <pre>
+        function abc(callback)
+        {
+            console.log("my name is sumit rawat")
+            callback()
+        }
+        function abc2(callback)
+        {
+            console.log("and i am 21 year old")
+           
+        }
+        abc(abc2)
+    </pre>
+    <br />
+    <hr />
+    <p>
+      Question 2=> "Write a callback function to print numbers from 1 to 7, in
+      which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3
+      should be printed after 3 sec, and so on. Explain callback hell. Numbers 1
+      2 3 4 5 6 7"
+    </p>
+    <br />
+    <pre>
+        function abc(callback)
+        {
+          
+          setTimeout(()=>{
+            console.log("1")
+            callback()
+          },1000)
+          
+        }
+        function abc1(callback)
+        {
+          setTimeout(()=>{
+            console.log("2")
+            callback()
+          },2000)
+          
+        }
+        function abc2(callback)
+        {
+          setTimeout(()=>{
+            console.log("3")
+              callback()
+          },3000)
+        
+        }
+        function abc3(callback)
+        {
+          setTimeout(()=>{
+            console.log("4")
+            
+          },4000)
+          
+        }
+        
+        
+        abc(()=>{
+          abc1(()=>{
+            abc2(()=>{
+              abc3()
+            
+            })
+          })
+        })
+        
+    </pre>
+    <br />
+    <hr />
+    <p>
+      Question 3=>"Write the promise function to print numbers from 1 to 7, in
+      which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3
+      should be printed after 3 sec, and so on. Numbers 1 2 3 4 5 6 7"
+    </p>
+    <br>
+    <pre>
+      function printNumbers() {
+        let number = 1;
+      
+        function printNumberWithDelay() {
+          return new Promise(resolve => {
+            setTimeout(() => {
+              console.log(number);
+              resolve();
+              number++;
+      
+              if (number <= 7) {
+                printNumberWithDelay();
+              }
+            }, number * 1000);
+          });
+        }
+      
+        printNumberWithDelay();
+      }
+      
+      printNumbers();
+      
+    </pre>
+    <br />
+    <hr />
+    <p>
+      Question 4=> "Create a promise function accepting an argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed 
+      then it should go to reject the state and catch the error and print Promise Rejected "
+    </p>
+    <br>
+    <pre>
+        let p="yes";
+        function promiseFun(p){
+        return new Promise ((res,rej)=>{
+        if(p==="yes"){
+        res("Promise resolved...");
+         }else{
+        rej(Error("Promise Rejected..."));
+        }
+        })
+         }
+
+        promiseFun(p)
+        .then((item)=>{console.log(item)})
+        .catch((err)=>{console.log(err)});
+
+    </pre>
+    <p>Question 5=> Create examples to explain callback function</p>
+    <br>
+    <pre>
+        Example 1=>
+        function abc(callback)
+        {
+            console.log("my name is sumit rawat")
+            callback()
+        }
+        function abc2(callback)
+        {
+            console.log("and i am 21 year old")
+           
+        }
+        abc(abc2)
+
+
+       
+
+        Example 2=>
+
+        function abc(callback)
+        {
+            setTimeout(()=>{
+                var s="hey my name is sumit";
+                callback(s)
+               
+                
+              },1000)
+        }
+        function abc2(s)
+        {
+            setTimeout(()=>{
+                console.log(s+"And i am mern stack developer")
+               
+                
+              },2000)
+        }
+        abc(abc2)
+
+    </pre>
+    <br><hr>
+    <p>Question 5=> Create examples to explain callback hell function</p>
+    <br>
+    <pre>
+        Example 1=>
+        function abc(callback)
+        {
+          
+          setTimeout(()=>{
+            console.log("1")
+            callback()
+          },1000)
+          
+        }
+        function abc1(callback)
+        {
+          setTimeout(()=>{
+            console.log("2")
+            callback()
+          },2000)
+          
+        }
+        function abc2(callback)
+        {
+          setTimeout(()=>{
+            console.log("3")
+              callback()
+          },3000)
+        
+        }
+        function abc3(callback)
+        {
+          setTimeout(()=>{
+            console.log("4")
+            
+          },4000)
+          
+        }
+        
+        
+        abc(()=>{
+          abc1(()=>{
+            abc2(()=>{
+              abc3()
+            
+            })
+          })
+        })
+    </pre>
+    <br><hr>
+    <br>
+    <p> Question 6=>Create examples to explain callback hell function</p>
+    <br>
+    <pre>
+
+     setTimeout(()=>{
+      console.log("1")
+       setTimeout(()=>{
+         console.log("2")
+           setTimeout(()=> {
+             console.log("3")
+               setTimeout(()=>{
+                console.log("4")
+                  setTimeout(()=>{
+                  console.log("5")
+            
+              },5000)
+           },4000)
+         },3000)
+      },2000)
+   },1000)
+    </pre>
+    <br>
+    <hr>
+    <br>
+    <p>Question 7=> Create examples to explain promises function</p>
+    <pre>
+
+     var ticket =true
+     var promise =new Promise(function(resolve,reject)
+                         {
+                           if(ticket)
+                           {
+                             resolve("let go to vacation")
+                           }
+                          else {
+                            reject(error("try another option"))
+                          }
+                         })
+
+     promise.then(function(result)
+             {
+               console.log(result)
+             }
+                ,function(err)
+             {
+               console.log(err)
+             }
+           
+  )
+    </pre>
+    <br><hr>
+    <br>
+    <p>Question 8=>Create examples to explain async await function</p>
+    <br>
+    <pre>
+      function promisechain(alpha ,timeout)
+     {
+    return  new Promise((res,rej)=>{
+      setTimeout(()=>{
+        console.log(alpha)
+        res("nvdfkjn")
+      },timeout)
+    })
+   }
+
+
+
+     async  function  visible()
+   {
+   await  promisechain("a",2000)
+   await  promisechain("b",5000)
+   await  promisechain("c",2000)
+   await  promisechain("a",1000)
+   await  promisechain("ar",2000)
+   await  promisechain("y",2000)
+   await  promisechain("o",1000)
+}
+
+   visible()
+    </pre>
+<br><hr> <br>
+<p>Question 9=>Create examples to explain promise.all function</p>
+<br>
+<pre>
+  const promise =new Promise((resolve ,reject)=>{
+    setTimeout(()=>{
+      resolve("promise 1")
+    },1000)
+  })
+  const promise1 =new Promise((resolve ,reject)=>{
+    setTimeout(()=>{
+      resolve("promise 2")
+    },2000)
+  })
+  const promise2 =new Promise((resolve ,reject)=>{
+    setTimeout(()=>{
+      resolve("promise 3")
+    },4000)
+  })
+  const promise3 =new Promise((resolve ,reject)=>{
+    setTimeout(()=>{
+      resolve("promise 4")
+    },4000)
+  })
+  
+  Promise.all([promise,promise1,promise2,promise3])
+  .then((result)=>{
+    console.log("all promise fulllfilled,",result)
+  })
+</pre>
+<br><hr><br>
+
+
+  </body>
+</html>
